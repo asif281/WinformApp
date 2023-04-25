@@ -36,7 +36,7 @@ namespace Bwhere2023
                 .ConfigureServices((context, services) => {
                     services.AddTransient<IEasyHttpClient, EasyHttpClient>();
                     services.AddTransient<IUserService, UserService>();
-                    services.AddTransient<FormLogin>();
+                    services.AddSingleton<FormLogin>();
                     services.AddTransient<MinimizeForm>();
                     services.AddTransient<CustomerForm>();
                 });

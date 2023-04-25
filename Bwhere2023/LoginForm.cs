@@ -15,16 +15,22 @@ using BAL.Services.HttpService;
 using BAL.Services.UserService;
 using Microsoft.VisualBasic.Logging;
 using Newtonsoft.Json;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Bwhere2023
 {
     public partial class FormLogin : Form
     {
-        private readonly IUserService _userService;
+        private readonly IUserService _userService = null;
+        CustomerForm customerForm = new CustomerForm();
         public FormLogin(IEasyHttpClient easyHttpClient, IUserService userService)
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             _userService = userService;
+        }
+        public FormLogin()
+        {
         }
 
         private void focusOnEmail(object sender, EventArgs e)
@@ -71,7 +77,7 @@ namespace Bwhere2023
         private bool AuthUserInputs()
         {
             if (!ValidateInputs()) return false;
-           
+
             return true;
         }
 
@@ -88,20 +94,20 @@ namespace Bwhere2023
                     await LoggingInProcess();
 
                     string url = Properties.Settings.Default.ApiUrl + ApiUrls.GetAppToken;
-                   
-                    
-                    
-                    var response =  await _userService.UserLogin(url, textBoxEmail.Text, textBoxPassword.Text, "Bwhere windows");
-                    
+
+
+
+                    var response = await _userService.UserLogin(url, textBoxEmail.Text, textBoxPassword.Text, "Bwhere windows");
+
                     if (response.StatusCode.IsOk())
                     {
                         Properties.Settings.Default.ApiKey = response.Body.Data;
                         Properties.Settings.Default.Save();
 
-                       this.GetUser();
+                        this.GetUser();
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -124,16 +130,18 @@ namespace Bwhere2023
                 {
                     Properties.Settings.Default.LoggedInUserId = response.Body.Id;
                     Properties.Settings.Default.LoggedInUserName = response.Body.Name;
+                    MessageBox.Show(response.Body.Name);
                     Properties.Settings.Default.LoggedInUserEmail = response.Body.Email;
                     Properties.Settings.Default.Save();
 
                 }
 
+                customerForm.UserName = response.Body.Name;
                 var mainForm = new MinimizeForm(_userService);
                 mainForm.Show();
                 this.Hide();
             }
-            
+
         }
 
         private async Task LoggingInProcess()
@@ -142,7 +150,7 @@ namespace Bwhere2023
             Info.Visible = true;
             validationLabel.Visible = false;
         }
-        
+
         private async Task GettingUserDataInProcess()
         {
             Login.Enabled = false;
@@ -150,7 +158,7 @@ namespace Bwhere2023
             Info.Text = "Getting Customers Data....";
             validationLabel.Visible = false;
         }
-        
+
         private async Task LoggingFailed()
         {
             Login.Enabled = true;
@@ -170,6 +178,27 @@ namespace Bwhere2023
             {
                 return;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to exit?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                // Close the application
+                Application.Exit();
+            }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

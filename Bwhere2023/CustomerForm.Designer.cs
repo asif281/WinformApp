@@ -33,6 +33,8 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             button1 = new Button();
             panel1 = new Panel();
+            label2 = new Label();
+            button2 = new Button();
             label1 = new Label();
             toolTip1 = new ToolTip(components);
             dataGridView1 = new DataGridView();
@@ -43,6 +45,7 @@
             Column4 = new DataGridViewTextBoxColumn();
             Column5 = new DataGridViewTextBoxColumn();
             panel2 = new Panel();
+            label3 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -53,7 +56,7 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Lucida Sans Unicode", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(757, 4);
+            button1.Location = new Point(723, 4);
             button1.Name = "button1";
             button1.Size = new Size(31, 33);
             button1.TabIndex = 1;
@@ -65,6 +68,9 @@
             // panel1
             // 
             panel1.BackColor = Color.RoyalBlue;
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(label2);
+            panel1.Controls.Add(button2);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(button1);
             panel1.Dock = DockStyle.Top;
@@ -72,9 +78,38 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(800, 41);
             panel1.TabIndex = 2;
+            panel1.Paint += panel1_Paint;
             panel1.MouseDown += panel1_MouseDown;
             panel1.MouseMove += panel1_MouseMove;
             panel1.MouseUp += panel1_MouseUp;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(637, 8);
+            label2.Name = "label2";
+            label2.Size = new Size(78, 25);
+            label2.TabIndex = 3;
+            label2.Text = "Logout";
+            label2.Click += label2_Click;
+            // 
+            // button2
+            // 
+            button2.BackColor = Color.Crimson;
+            button2.FlatAppearance.BorderSize = 0;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Font = new Font("Lucida Sans Unicode", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            button2.ForeColor = Color.White;
+            button2.Location = new Point(757, 4);
+            button2.Name = "button2";
+            button2.Size = new Size(31, 33);
+            button2.TabIndex = 2;
+            button2.Text = "X";
+            toolTip1.SetToolTip(button2, "Minimise");
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // label1
             // 
@@ -101,6 +136,7 @@
             dataGridView1.Location = new Point(0, 41);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
+            dataGridView1.RightToLeft = RightToLeft.No;
             dataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.LightGray;
@@ -112,7 +148,7 @@
             dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(800, 376);
+            dataGridView1.Size = new Size(800, 269);
             dataGridView1.TabIndex = 3;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -167,7 +203,19 @@
             panel2.Size = new Size(800, 36);
             panel2.TabIndex = 4;
             // 
-            // Form2
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(129, 8);
+            label3.Name = "label3";
+            label3.Size = new Size(52, 25);
+            label3.TabIndex = 4;
+            label3.Text = "asid";
+            label3.TextAlign = ContentAlignment.TopRight;
+            // 
+            // CustomerForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -176,9 +224,10 @@
             Controls.Add(dataGridView1);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "Form2";
+            Name = "CustomerForm";
             Text = "Form2";
             TopMost = true;
+            Load += CustomerForm_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
@@ -198,5 +247,8 @@
         private DataGridViewTextBoxColumn Column4;
         private DataGridViewTextBoxColumn Column5;
         private Panel panel2;
+        private Button button2;
+        private Label label2;
+        private Label label3;
     }
 }

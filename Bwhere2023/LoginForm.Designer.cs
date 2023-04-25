@@ -28,179 +28,197 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.RememberEmail = new System.Windows.Forms.CheckBox();
-            this.validationLabel = new System.Windows.Forms.Label();
-            this.Info = new System.Windows.Forms.Label();
-            this.Login = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.textBoxPassword = new System.Windows.Forms.TextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.textBoxEmail = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel1.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.SuspendLayout();
+            panel1 = new Panel();
+            button1 = new Button();
+            RememberEmail = new CheckBox();
+            validationLabel = new Label();
+            Info = new Label();
+            Login = new Button();
+            panel3 = new Panel();
+            textBoxPassword = new TextBox();
+            panel2 = new Panel();
+            textBoxEmail = new TextBox();
+            label1 = new Label();
+            pictureBox1 = new PictureBox();
+            panel1.SuspendLayout();
+            panel3.SuspendLayout();
+            panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.AutoSize = true;
-            this.panel1.BackColor = System.Drawing.Color.RoyalBlue;
-            this.panel1.Controls.Add(this.RememberEmail);
-            this.panel1.Controls.Add(this.validationLabel);
-            this.panel1.Controls.Add(this.Info);
-            this.panel1.Controls.Add(this.Login);
-            this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(450, 227);
-            this.panel1.TabIndex = 0;
+            panel1.AutoSize = true;
+            panel1.BackColor = Color.RoyalBlue;
+            panel1.Controls.Add(button1);
+            panel1.Controls.Add(RememberEmail);
+            panel1.Controls.Add(validationLabel);
+            panel1.Controls.Add(Info);
+            panel1.Controls.Add(Login);
+            panel1.Controls.Add(panel3);
+            panel1.Controls.Add(panel2);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(pictureBox1);
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(450, 227);
+            panel1.TabIndex = 0;
+            panel1.Paint += panel1_Paint;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.Red;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.ForeColor = SystemColors.ActiveCaptionText;
+            button1.Location = new Point(317, 146);
+            button1.Name = "button1";
+            button1.Size = new Size(111, 33);
+            button1.TabIndex = 8;
+            button1.Text = "Close";
+            button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // RememberEmail
             // 
-            this.RememberEmail.AutoSize = true;
-            this.RememberEmail.BackColor = System.Drawing.Color.RoyalBlue;
-            this.RememberEmail.ForeColor = System.Drawing.Color.White;
-            this.RememberEmail.Location = new System.Drawing.Point(186, 60);
-            this.RememberEmail.Name = "RememberEmail";
-            this.RememberEmail.Size = new System.Drawing.Size(116, 19);
-            this.RememberEmail.TabIndex = 7;
-            this.RememberEmail.Text = "Remember Email";
-            this.RememberEmail.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.RememberEmail.UseVisualStyleBackColor = false;
+            RememberEmail.AutoSize = true;
+            RememberEmail.BackColor = Color.RoyalBlue;
+            RememberEmail.ForeColor = Color.White;
+            RememberEmail.Location = new Point(186, 60);
+            RememberEmail.Name = "RememberEmail";
+            RememberEmail.Size = new Size(116, 19);
+            RememberEmail.TabIndex = 7;
+            RememberEmail.Text = "Remember Email";
+            RememberEmail.TextImageRelation = TextImageRelation.TextBeforeImage;
+            RememberEmail.UseVisualStyleBackColor = false;
             // 
             // validationLabel
             // 
-            this.validationLabel.BackColor = System.Drawing.Color.Snow;
-            this.validationLabel.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.validationLabel.ForeColor = System.Drawing.Color.Red;
-            this.validationLabel.Location = new System.Drawing.Point(183, 115);
-            this.validationLabel.Name = "validationLabel";
-            this.validationLabel.Size = new System.Drawing.Size(257, 28);
-            this.validationLabel.TabIndex = 6;
-            this.validationLabel.Text = "username or password not valid.";
-            this.validationLabel.UseMnemonic = false;
-            this.validationLabel.Visible = false;
+            validationLabel.BackColor = Color.Snow;
+            validationLabel.Font = new Font("Cambria", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            validationLabel.ForeColor = Color.Red;
+            validationLabel.Location = new Point(183, 115);
+            validationLabel.Name = "validationLabel";
+            validationLabel.Size = new Size(257, 28);
+            validationLabel.TabIndex = 6;
+            validationLabel.Text = "username or password not valid.";
+            validationLabel.UseMnemonic = false;
+            validationLabel.Visible = false;
             // 
             // Info
             // 
-            this.Info.AutoSize = true;
-            this.Info.BackColor = System.Drawing.Color.AliceBlue;
-            this.Info.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.Info.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.Info.ForeColor = System.Drawing.Color.SeaGreen;
-            this.Info.Location = new System.Drawing.Point(183, 114);
-            this.Info.MinimumSize = new System.Drawing.Size(190, 5);
-            this.Info.Name = "Info";
-            this.Info.Size = new System.Drawing.Size(190, 14);
-            this.Info.TabIndex = 5;
-            this.Info.Text = "Logging in...";
-            this.Info.Visible = false;
+            Info.AutoSize = true;
+            Info.BackColor = Color.AliceBlue;
+            Info.FlatStyle = FlatStyle.Popup;
+            Info.Font = new Font("Cambria", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            Info.ForeColor = Color.SeaGreen;
+            Info.Location = new Point(183, 114);
+            Info.MinimumSize = new Size(190, 5);
+            Info.Name = "Info";
+            Info.Size = new Size(190, 14);
+            Info.TabIndex = 5;
+            Info.Text = "Logging in...";
+            Info.Visible = false;
             // 
             // Login
             // 
-            this.Login.BackColor = System.Drawing.Color.White;
-            this.Login.FlatAppearance.BorderSize = 0;
-            this.Login.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Login.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Login.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Login.Location = new System.Drawing.Point(246, 146);
-            this.Login.Name = "Login";
-            this.Login.Size = new System.Drawing.Size(111, 33);
-            this.Login.TabIndex = 3;
-            this.Login.Text = "Login";
-            this.Login.UseVisualStyleBackColor = false;
-            this.Login.Click += new System.EventHandler(this.Login_Click);
+            Login.BackColor = Color.White;
+            Login.FlatAppearance.BorderSize = 0;
+            Login.FlatStyle = FlatStyle.Flat;
+            Login.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            Login.ForeColor = SystemColors.ActiveCaptionText;
+            Login.Location = new Point(186, 146);
+            Login.Name = "Login";
+            Login.Size = new Size(111, 33);
+            Login.TabIndex = 3;
+            Login.Text = "Login";
+            Login.UseVisualStyleBackColor = false;
+            Login.Click += Login_Click;
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.White;
-            this.panel3.Controls.Add(this.textBoxPassword);
-            this.panel3.Location = new System.Drawing.Point(183, 80);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(257, 31);
-            this.panel3.TabIndex = 4;
+            panel3.BackColor = Color.White;
+            panel3.Controls.Add(textBoxPassword);
+            panel3.Location = new Point(183, 80);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(257, 31);
+            panel3.TabIndex = 4;
             // 
             // textBoxPassword
             // 
-            this.textBoxPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxPassword.Location = new System.Drawing.Point(0, 8);
-            this.textBoxPassword.Name = "textBoxPassword";
-            this.textBoxPassword.PasswordChar = '*';
-            this.textBoxPassword.PlaceholderText = "password";
-            this.textBoxPassword.Size = new System.Drawing.Size(245, 17);
-            this.textBoxPassword.TabIndex = 2;
-            this.textBoxPassword.UseSystemPasswordChar = true;
-            this.textBoxPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyDown);
+            textBoxPassword.BorderStyle = BorderStyle.None;
+            textBoxPassword.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxPassword.Location = new Point(0, 8);
+            textBoxPassword.Name = "textBoxPassword";
+            textBoxPassword.PasswordChar = '*';
+            textBoxPassword.PlaceholderText = "password";
+            textBoxPassword.Size = new Size(245, 17);
+            textBoxPassword.TabIndex = 2;
+            textBoxPassword.UseSystemPasswordChar = true;
+            textBoxPassword.KeyDown += KeyDown;
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.Controls.Add(this.textBoxEmail);
-            this.panel2.Location = new System.Drawing.Point(183, 24);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(257, 32);
-            this.panel2.TabIndex = 3;
+            panel2.BackColor = Color.White;
+            panel2.Controls.Add(textBoxEmail);
+            panel2.Location = new Point(183, 24);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(257, 32);
+            panel2.TabIndex = 3;
             // 
             // textBoxEmail
             // 
-            this.textBoxEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBoxEmail.Location = new System.Drawing.Point(3, 3);
-            this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.PlaceholderText = "email address";
-            this.textBoxEmail.Size = new System.Drawing.Size(245, 17);
-            this.textBoxEmail.TabIndex = 1;
+            textBoxEmail.BorderStyle = BorderStyle.None;
+            textBoxEmail.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxEmail.Location = new Point(3, 3);
+            textBoxEmail.Name = "textBoxEmail";
+            textBoxEmail.PlaceholderText = "email address";
+            textBoxEmail.Size = new Size(245, 17);
+            textBoxEmail.TabIndex = 1;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.White;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.Color.DimGray;
-            this.label1.Location = new System.Drawing.Point(28, 60);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 25);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "B-Where";
+            label1.AutoSize = true;
+            label1.BackColor = Color.White;
+            label1.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = Color.DimGray;
+            label1.Location = new Point(28, 60);
+            label1.Name = "label1";
+            label1.Size = new Size(96, 25);
+            label1.TabIndex = 1;
+            label1.Text = "B-Where";
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.Image = global::Bwhere2023.Properties.Resources.logo;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Padding = new System.Windows.Forms.Padding(5);
-            this.pictureBox1.Size = new System.Drawing.Size(163, 210);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            pictureBox1.BackColor = Color.White;
+            pictureBox1.Image = Properties.Resources.logo;
+            pictureBox1.Location = new Point(0, 0);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Padding = new Padding(5);
+            pictureBox1.Size = new Size(163, 210);
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // FormLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(450, 210);
-            this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FormLogin";
-            this.Text = "Form3";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(450, 210);
+            Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "FormLogin";
+            Text = "Form3";
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -216,5 +234,6 @@
         private Label Info;
         private Label validationLabel;
         private CheckBox RememberEmail;
+        private Button button1;
     }
 }

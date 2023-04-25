@@ -2,6 +2,7 @@
 using BAL.Common.Constants;
 using BAL.Services.HttpService;
 using BAL.Services.UserService;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -24,15 +25,20 @@ namespace Bwhere2023
         private bool isDragging = false;
         private bool isMoving = false;
         private Point lastMousePosition;
+        public string UserName = "";
 
         List<WhereRow> whereData;
 
         public CustomerForm(MinimizeForm firstForm, IUserService userService)
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             this.firstForm = firstForm;
             _userService = userService;
             GetCustomerData();
+        }
+        public CustomerForm()
+        {
         }
 
 
@@ -54,7 +60,7 @@ namespace Bwhere2023
                 dataGridView1.DataSource = this.whereData;
                 dataGridView1.Refresh();
             }
-        
+
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -106,6 +112,36 @@ namespace Bwhere2023
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to exit?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                // Close the application
+                Application.Exit();
+            }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            //Application.Restart();
+            FormLogin formLogin = new FormLogin();
+            this.Hide();
+            formLogin.ShowDialog();
+            //formLogin.
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void CustomerForm_Load(object sender, EventArgs e)
+        {
+            label3.Text = UserName;
         }
     }
 }
