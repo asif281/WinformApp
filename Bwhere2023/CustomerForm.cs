@@ -26,6 +26,7 @@ namespace Bwhere2023
         private bool isMoving = false;
         private Point lastMousePosition;
         public string UserName = "Asif";
+        private FormLogin formLogin;
 
         List<WhereRow> whereData;
 
@@ -36,6 +37,7 @@ namespace Bwhere2023
             this.firstForm = firstForm;
             _userService = userService;
             GetCustomerData();
+             formLogin = new FormLogin();
         }
         public CustomerForm()
         {
@@ -44,6 +46,7 @@ namespace Bwhere2023
 
         private void button1_Click(object sender, EventArgs e)
         {
+            firstForm.UserName = UserName;
             firstForm.Show();
             this.Hide();
 
@@ -128,9 +131,8 @@ namespace Bwhere2023
         private void label2_Click(object sender, EventArgs e)
         {
             //Application.Restart();
-            FormLogin formLogin = new FormLogin();
             this.Hide();
-            formLogin.ShowDialog();
+            formLogin.Show();
             //formLogin.
         }
 

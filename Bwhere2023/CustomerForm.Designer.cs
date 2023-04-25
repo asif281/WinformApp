@@ -33,6 +33,7 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             button1 = new Button();
             panel1 = new Panel();
+            label3 = new Label();
             label2 = new Label();
             button2 = new Button();
             label1 = new Label();
@@ -45,7 +46,7 @@
             Column4 = new DataGridViewTextBoxColumn();
             Column5 = new DataGridViewTextBoxColumn();
             panel2 = new Panel();
-            label3 = new Label();
+            timer1 = new System.Windows.Forms.Timer(components);
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -82,6 +83,18 @@
             panel1.MouseDown += panel1_MouseDown;
             panel1.MouseMove += panel1_MouseMove;
             panel1.MouseUp += panel1_MouseUp;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(129, 8);
+            label3.Name = "label3";
+            label3.Size = new Size(52, 25);
+            label3.TabIndex = 4;
+            label3.Text = "asid";
+            label3.TextAlign = ContentAlignment.TopRight;
             // 
             // label2
             // 
@@ -203,17 +216,9 @@
             panel2.Size = new Size(800, 36);
             panel2.TabIndex = 4;
             // 
-            // label3
+            // timer1
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(129, 8);
-            label3.Name = "label3";
-            label3.Size = new Size(52, 25);
-            label3.TabIndex = 4;
-            label3.Text = "asid";
-            label3.TextAlign = ContentAlignment.TopRight;
+            timer1.Tick += timer1_Tick;
             // 
             // CustomerForm
             // 
@@ -250,5 +255,6 @@
         private Button button2;
         private Label label2;
         private Label label3;
+        private System.Windows.Forms.Timer timer1;
     }
 }

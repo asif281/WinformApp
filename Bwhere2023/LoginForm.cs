@@ -31,6 +31,7 @@ namespace Bwhere2023
         }
         public FormLogin()
         {
+            InitializeComponent();
         }
 
         private void focusOnEmail(object sender, EventArgs e)
@@ -130,14 +131,13 @@ namespace Bwhere2023
                 {
                     Properties.Settings.Default.LoggedInUserId = response.Body.Id;
                     Properties.Settings.Default.LoggedInUserName = response.Body.Name;
-                    MessageBox.Show(response.Body.Name);
                     Properties.Settings.Default.LoggedInUserEmail = response.Body.Email;
                     Properties.Settings.Default.Save();
 
                 }
 
-                customerForm.UserName = response.Body.Name;
                 var mainForm = new MinimizeForm(_userService);
+                mainForm.UserName = response.Body.Name;
                 mainForm.Show();
                 this.Hide();
             }
@@ -197,6 +197,11 @@ namespace Bwhere2023
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void FormLogin_Load(object sender, EventArgs e)
         {
 
         }

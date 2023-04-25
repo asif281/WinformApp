@@ -1,3 +1,4 @@
+using BAL.Common.Responses;
 using BAL.Services.HttpService;
 using BAL.Services.UserService;
 using System.Runtime.InteropServices;
@@ -13,6 +14,7 @@ namespace Bwhere2023
         private bool isDragging = false;
         private bool isMoving = false;
         private Point lastMousePosition;
+        public string UserName = "Asif";
 
         [DllImport("user32.dll")]
         public static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy, uint uFlags);
@@ -46,6 +48,7 @@ namespace Bwhere2023
         {
             if (isMoving == false)
             {
+                secondForm.UserName = UserName;
                 secondForm.Show();
                 this.Hide();
             }
