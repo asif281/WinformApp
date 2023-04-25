@@ -25,7 +25,7 @@ namespace Bwhere2023
         private bool isDragging = false;
         private bool isMoving = false;
         private Point lastMousePosition;
-        public string UserName = "";
+        public string UserName = "Asif";
 
         List<WhereRow> whereData;
 
