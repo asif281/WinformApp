@@ -27,17 +27,25 @@ namespace Bwhere2023
         private Point lastMousePosition;
         public string UserName = "Asif";
         private FormLogin formLogin;
+        private System.Windows.Forms.Timer timer;
 
         List<WhereRow> whereData;
 
         public CustomerForm(MinimizeForm firstForm, IUserService userService)
         {
             InitializeComponent();
+            // create and configure the timer
+            timer = new System.Windows.Forms.Timer();
+            timer.Interval = 5000; // 60 seconds
+            timer.Tick += timer1_Tick;
+
+            // start the timer
+            timer.Start();
             this.StartPosition = FormStartPosition.CenterScreen;
             this.firstForm = firstForm;
             _userService = userService;
             GetCustomerData();
-             formLogin = new FormLogin();
+            formLogin = new FormLogin(_userService);
         }
         public CustomerForm()
         {
@@ -144,6 +152,11 @@ namespace Bwhere2023
         private void CustomerForm_Load(object sender, EventArgs e)
         {
             label3.Text = UserName;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            GetCustomerData();
         }
     }
 }

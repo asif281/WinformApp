@@ -29,8 +29,9 @@ namespace Bwhere2023
             this.StartPosition = FormStartPosition.CenterScreen;
             _userService = userService;
         }
-        public FormLogin()
+        public FormLogin(IUserService userService)
         {
+            _userService = userService;
             InitializeComponent();
         }
 

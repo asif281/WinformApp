@@ -205,7 +205,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(450, 293);
+            ClientSize = new Size(450, 229);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FormLogin";
