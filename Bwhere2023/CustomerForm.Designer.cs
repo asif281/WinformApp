@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             button1 = new Button();
             panel1 = new Panel();
             label3 = new Label();
@@ -47,8 +47,16 @@
             Column5 = new DataGridViewTextBoxColumn();
             panel2 = new Panel();
             timer1 = new System.Windows.Forms.Timer(components);
+            panel3 = new Panel();
+            label4 = new Label();
+            label5 = new Label();
+            textBox1 = new TextBox();
+            label6 = new Label();
+            dateTimePicker1 = new DateTimePicker();
+            comboBox1 = new ComboBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // button1
@@ -138,8 +146,8 @@
             // dataGridView1
             // 
             dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(224, 224, 224);
-            dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(224, 224, 224);
+            dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -151,19 +159,21 @@
             dataGridView1.ReadOnly = true;
             dataGridView1.RightToLeft = RightToLeft.No;
             dataGridView1.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.LightGray;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.LightGray;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(800, 269);
+            dataGridView1.Size = new Size(800, 376);
             dataGridView1.TabIndex = 3;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
+            dataGridView1.CellFormatting += dataGridView1_CellFormatting;
             // 
             // Staff
             // 
@@ -220,11 +230,79 @@
             // 
             timer1.Tick += timer1_Tick;
             // 
+            // panel3
+            // 
+            panel3.BackColor = Color.RoyalBlue;
+            panel3.Controls.Add(label4);
+            panel3.Controls.Add(label5);
+            panel3.Controls.Add(textBox1);
+            panel3.Controls.Add(label6);
+            panel3.Controls.Add(dateTimePicker1);
+            panel3.Controls.Add(comboBox1);
+            panel3.Location = new Point(200, 69);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(350, 175);
+            panel3.TabIndex = 5;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.ForeColor = Color.Transparent;
+            label4.Location = new Point(32, 132);
+            label4.Name = "label4";
+            label4.Size = new Size(39, 15);
+            label4.TabIndex = 11;
+            label4.Text = "Status";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.ForeColor = Color.Transparent;
+            label5.Location = new Point(32, 75);
+            label5.Name = "label5";
+            label5.Size = new Size(59, 15);
+            label5.TabIndex = 10;
+            label5.Text = "Returning";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(119, 16);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(200, 23);
+            textBox1.TabIndex = 9;
+            textBox1.KeyDown += textBox1_KeyDown;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.ForeColor = Color.Transparent;
+            label6.Location = new Point(32, 24);
+            label6.Name = "label6";
+            label6.Size = new Size(41, 15);
+            label6.TabIndex = 8;
+            label6.Text = "Where";
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Location = new Point(119, 69);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(200, 23);
+            dateTimePicker1.TabIndex = 7;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(119, 124);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(200, 23);
+            comboBox1.TabIndex = 6;
+            // 
             // CustomerForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(dataGridView1);
             Controls.Add(panel1);
@@ -236,6 +314,8 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -256,5 +336,12 @@
         private Label label2;
         private Label label3;
         private System.Windows.Forms.Timer timer1;
+        private Panel panel3;
+        private Label label4;
+        private Label label5;
+        private TextBox textBox1;
+        private Label label6;
+        private DateTimePicker dateTimePicker1;
+        private ComboBox comboBox1;
     }
 }

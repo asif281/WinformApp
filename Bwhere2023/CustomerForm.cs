@@ -4,6 +4,7 @@ using BAL.Services.HttpService;
 using BAL.Services.UserService;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Bwhere2023
 {
@@ -30,6 +32,15 @@ namespace Bwhere2023
         private System.Windows.Forms.Timer timer;
 
         List<WhereRow> whereData;
+        List<Dummy> dataList = new List<Dummy>
+        {
+    new Dummy { Staff = "John", Mes = "hello", Ext = 12,Out = true,Meeting = false,Leave = false,Sick = false,Expected = "",Returning = "",Where = "" },
+    new Dummy { Staff = "Jane", Mes = "hello", Ext = 12 , Out = false,Meeting = true,Leave = false,Sick = false,Expected = "",Returning = "",Where = "" },
+    new Dummy { Staff = "Bob", Mes = "hello", Ext = 32 ,Out = false,Meeting = false,Leave = true,Sick = false,Expected = "",Returning = "",Where = "" },
+    new Dummy { Staff = "Alice", Mes = "hello", Ext = 22 , Out = false,Meeting = false,Leave = false,Sick = true,Expected = "",Returning = "",Where = "" },
+    new Dummy { Staff = "Tom", Mes = "hello", Ext = 8 , Out = true,Meeting = false,Leave = false,Sick = false,Expected = "",Returning = "",Where = "" }
+
+};
 
         public CustomerForm(MinimizeForm firstForm, IUserService userService)
         {
@@ -68,7 +79,7 @@ namespace Bwhere2023
             if (response.StatusCode.IsOk())
             {
                 this.whereData = response.Body.data;
-                dataGridView1.DataSource = this.whereData;
+                dataGridView1.DataSource = dataList;// this.whereData;
                 dataGridView1.Refresh();
             }
 
@@ -151,12 +162,67 @@ namespace Bwhere2023
 
         private void CustomerForm_Load(object sender, EventArgs e)
         {
+            panel3.Visible = false;
+            // Assume that we have a ComboBox control named "comboBox1" on our form
+            List<string> items = new List<string> { "Out", "Meeting", "Leave", "Sick" }; // this is our list of items
+
+            // We can load the items into the dropdown list like this:
+            comboBox1.DataSource = items;
+            comboBox1.DisplayMember = "Value"; // assuming that we want to display the string values themselves
+
+
             label3.Text = UserName;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             GetCustomerData();
+        }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex >= 0) // check if it's a data row
+            {
+                var row = dataGridView1.Rows[e.RowIndex];
+                var dummy = (Dummy)row.DataBoundItem;
+
+                if (dummy.Out)
+                {
+                    row.DefaultCellStyle.BackColor = Color.MediumPurple;
+                }
+                else if (dummy.Meeting)
+                {
+                    row.DefaultCellStyle.BackColor = Color.LightBlue;
+                }
+                else if (dummy.Leave)
+                {
+                    row.DefaultCellStyle.BackColor = Color.Yellow;
+                }
+                else if (dummy.Sick)
+                {
+                    row.DefaultCellStyle.BackColor = Color.Orange;
+                }
+                else
+                {
+                    row.DefaultCellStyle.BackColor = Color.Gray;
+                }
+            }
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            panel3.Visible = true;
+
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Call your function here
+                MessageBox.Show("update API");
+                panel3.Visible = false;
+            }
         }
     }
 }
