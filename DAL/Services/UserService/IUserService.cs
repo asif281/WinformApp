@@ -9,5 +9,6 @@ namespace BAL.Services.UserService
         Task<ApiResponse<MyResponse>> UserLogin(string url, string username, string password, string deviceName);
         Task<ApiResponse<ProfileResponse>> GetUser(string url, string apiKey);
         Task<ApiResponse<ResultsData>> GetCustomerData(string url, string apiKey);
+        Task<ApiResponse<object>> SetUserAway(string url, string apiKey, UserAwayInfo userAwayInfo);
     }
 }

@@ -26,28 +26,20 @@ namespace Bwhere2023
         private readonly IUserService _userService;
         private bool isDragging = false;
         private bool isMoving = false;
+        public string staffId;
         private Point lastMousePosition;
         public string UserName = "Asif";
         private FormLogin formLogin;
         private System.Windows.Forms.Timer timer;
 
         List<WhereRow> whereData;
-        List<Dummy> dataList = new List<Dummy>
-        {
-    new Dummy { Staff = "John", Mes = "hello", Ext = 12,Out = true,Meeting = false,Leave = false,Sick = false,Expected = "",Returning = "",Where = "" },
-    new Dummy { Staff = "Jane", Mes = "hello", Ext = 12 , Out = false,Meeting = true,Leave = false,Sick = false,Expected = "",Returning = "",Where = "" },
-    new Dummy { Staff = "Bob", Mes = "hello", Ext = 32 ,Out = false,Meeting = false,Leave = true,Sick = false,Expected = "",Returning = "",Where = "" },
-    new Dummy { Staff = "Alice", Mes = "hello", Ext = 22 , Out = false,Meeting = false,Leave = false,Sick = true,Expected = "",Returning = "",Where = "" },
-    new Dummy { Staff = "Tom", Mes = "hello", Ext = 8 , Out = true,Meeting = false,Leave = false,Sick = false,Expected = "",Returning = "",Where = "" }
-
-};
 
         public CustomerForm(MinimizeForm firstForm, IUserService userService)
         {
             InitializeComponent();
             // create and configure the timer
             timer = new System.Windows.Forms.Timer();
-            timer.Interval = 5000; // 60 seconds
+            timer.Interval = 120000; // 60 seconds
             timer.Tick += timer1_Tick;
 
             // start the timer
@@ -79,8 +71,32 @@ namespace Bwhere2023
             if (response.StatusCode.IsOk())
             {
                 this.whereData = response.Body.data;
-                dataGridView1.DataSource = dataList;// this.whereData;
+                foreach (var item in this.whereData)
+                {
+                    if (item.where_status == "Out")
+                    {
+                        item.Out = true;
+                    }
+                    else if (item.where_status == "Meeting")
+                    {
+                        item.Meeting = true;
+                    }
+                    else if (item.where_status == "Leave")
+                    {
+                        item.Leave = true;
+                    }
+                    else if (item.where_status == "Sick")
+                    {
+                        item.Sick = true;
+                    }
+                }
+                dataGridView1.DataSource = this.whereData;
                 dataGridView1.Refresh();
+            }
+            else if(response.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                this.Hide();
+                formLogin.Show();
             }
 
         }
@@ -184,7 +200,7 @@ namespace Bwhere2023
             if (e.RowIndex >= 0) // check if it's a data row
             {
                 var row = dataGridView1.Rows[e.RowIndex];
-                var dummy = (Dummy)row.DataBoundItem;
+                var dummy = (WhereRow)row.DataBoundItem;
 
                 if (dummy.Out)
                 {
@@ -211,6 +227,11 @@ namespace Bwhere2023
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                DataGridViewRow row = dataGridView1.SelectedRows[0];
+                 staffId = row.Cells["id"].Value.ToString();
+            }
             panel3.Visible = true;
 
         }
@@ -219,10 +240,49 @@ namespace Bwhere2023
         {
             if (e.KeyCode == Keys.Enter)
             {
-                // Call your function here
-                MessageBox.Show("update API");
-                panel3.Visible = false;
+                statusUpdate();
             }
+        }
+
+        private void dateTimePicker1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                statusUpdate();
+            }
+        }
+
+        private void comboBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                statusUpdate();
+            }
+        }
+
+        private async Task statusUpdate()
+       {
+            panel3.Visible = false;
+
+            this.Hide();
+            string where = textBox1.Text;
+            string returning = dateTimePicker1.Text;
+            string status = comboBox1.Text;
+            // Call your function here
+
+            UserAwayInfo userAwayInfo = new UserAwayInfo()
+            {
+                where_current_location = where,
+                where_returning_to_work = returning,
+                where_status = status
+            };
+
+            string userAwayUrl = Properties.Settings.Default.ApiUrl + ApiUrls.GetUserAway + staffId;
+            
+            var response = await _userService.SetUserAway(userAwayUrl, Properties.Settings.Default.ApiKey, userAwayInfo);
+
+            MessageBox.Show("update API");
+            panel3.Visible = false;
         }
     }
 }

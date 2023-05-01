@@ -93,5 +93,34 @@ namespace BAL.Services.UserService
             }
         }
 
+        public async Task<ApiResponse<object>> SetUserAway(string url, string apiKey, UserAwayInfo userAwayInfo)
+        {
+            try
+            {
+
+                Dictionary<string, string> headers = new Dictionary<string, string>();
+
+                headers.Add("Accept", "application/json");
+                headers.Add("User-Agent", "B-WHERE v2.00");
+                headers.Add("Authorization", "Bearer " + apiKey);
+
+                Action<HttpWebRequest> requestFilter = (HttpWebRequest req) => {
+                    foreach (var header in headers)
+                    {
+                        req.Headers[header.Key] = header.Value;
+                    }
+                };
+
+                var response = await _easyHttpClient.Post<object>(url, userAwayInfo, null, headers);
+
+                return response;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
     }
 }
